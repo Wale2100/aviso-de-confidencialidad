@@ -8,42 +8,35 @@
 <body>
 
     <script>
-    // Solicitar las notas al usuario
+
     var nota1 = prompt("Introduce la primera nota:");
     var nota2 = prompt("Introduce la segunda nota:");
     var nota3 = prompt("Introduce la tercera nota:");
 
-    // Convertir las notas a números
     nota1 = parseFloat(nota1);
     nota2 = parseFloat(nota2);
     nota3 = parseFloat(nota3);
 
-    // Comprobar si las notas son números válidos
     if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
-        console.error("Error: Las notas deben ser números válidos.");
+        console.log("Error: Las notas deben ser números válidos.");
     } else {
-        // Calcular la media de las 3 notas
         var media = (nota1 + nota2 + nota3) / 3;
 
-        // Mostrar la media de las notas
-        console.log("La media de las notas es: " + media);
+        document.write("La media de las notas es: " + media + "<br>");
 
-        // Evaluar el resultado
         var evaluacion;
-        if (media < 3) {
+        if (media <= 3) {
             evaluacion = "MD";
-        } else if (media < 5) {
+        } else if (media <= 5) {
             evaluacion = "Suspendido";
-        } else if (media < 7) {
+        } else if (media <= 7) {
             evaluacion = "Aprobado";
-        } else if (media < 8) {
+        } else if (media <= 8) {
             evaluacion = "Notable";
         } else {
             evaluacion = "Sobresaliente";
         }
-
-        // Mostrar la evaluación
-        console.log("La evaluación del alumno es: " + evaluacion);
+        document.write("La evaluación del alumno es: " + evaluacion);
     }
  
     </script>
