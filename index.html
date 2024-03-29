@@ -6,59 +6,47 @@
     <title>Confidencialidad</title>
 </head>
 <body>
-    <footer>
-        <div class="form">
-            <h2>Introduzca sus datos:</h2>
-            <label>Enlace web o dirección de email para ejercer los derechos de acceso, rectificación, cancelación y oposición (ARCO):</label>
-            <input type="email" class="form-control" id="email" placeholder="Ej. baja@sitioweb.com">
-        </div>
-        <div class="confi">
-            <h3>AVISO DE CONFIDENCIALIDADA</h3>
-        
-            <p>Este mensaje va dirigido exclusivamente a su destinatario, en caso de haber recibido este mensaje por error, puede comunicárnoslo mediante el correo electrónico remitido a nuestra atención y procederemos a revisar el motivo del error.
-                Asimismo, el email puede contener documentos y/o información confidencial propia o de terceros por lo que rogamos que se proceda a su eliminación, tanto del email como de los documentos adjuntos para así prevenir mayores fugas de información confidencial.
-                En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, puede ejercer los derechos de acceso, rectificación, cancelación y oposición (derechos ARCO) a través de:<p id="result"></p></p>
-        </div>
-    </footer>
-     <style>
-            footer{
-                width: 800px;
-                display: contents;
-                justify-content: center;
-            }
 
-            .form{
-                border: 1px solid blue;
-            }
+    <script>
+    // Solicitar las notas al usuario
+    var nota1 = prompt("Introduce la primera nota:");
+    var nota2 = prompt("Introduce la segunda nota:");
+    var nota3 = prompt("Introduce la tercera nota:");
 
-            .confi{
-                border: 1px solid blue;
-            }
+    // Convertir las notas a números
+    nota1 = parseFloat(nota1);
+    nota2 = parseFloat(nota2);
+    nota3 = parseFloat(nota3);
 
-             h2{
-            background-color: blue;
-            color: white;
-            margin-top: auto;
-            }
+    // Comprobar si las notas son números válidos
+    if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+        console.error("Error: Las notas deben ser números válidos.");
+    } else {
+        // Calcular la media de las 3 notas
+        var media = (nota1 + nota2 + nota3) / 3;
 
-            h3{
-                display: flex;
-                justify-content: center;
-            }
-        input{
-            display: block;
-            margin: 10px;
-          }</style>
-        <script>
-        var fieldone = document.getElementById("email");
+        // Mostrar la media de las notas
+        console.log("La media de las notas es: " + media);
 
-            fieldone.addEventListener('input',add);
-            
-        function add(){
-            var email = fieldone.value;
-              result.innerHTML = email;
-              
-            }
-        </script>
+        // Evaluar el resultado
+        var evaluacion;
+        if (media < 3) {
+            evaluacion = "MD";
+        } else if (media < 5) {
+            evaluacion = "Suspendido";
+        } else if (media < 7) {
+            evaluacion = "Aprobado";
+        } else if (media < 8) {
+            evaluacion = "Notable";
+        } else {
+            evaluacion = "Sobresaliente";
+        }
+
+        // Mostrar la evaluación
+        console.log("La evaluación del alumno es: " + evaluacion);
+    }
+ 
+    </script>
+
 </body>
 </html>
