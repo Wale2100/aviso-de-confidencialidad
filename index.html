@@ -7,107 +7,117 @@
 </head>
 
 <body>
-    <div class="calculadora">
-        <h1>Calculadora</h1>
-        <div>
-            <label for="num1">Número 1</label>
-            <input type="number" id="num1">
-        </div>
-        <div>
-            <label for="num2">Número 2</label>
-            <input type="number" id="num2">
-        </div>
-        <div>
-            <label for="resultado">Resultado</label>
-            <input type="number" id="resultado" disabled>
-        </div>
-        <div class="botones">
-            <button id="btnSuma">Suma</button>
-            <button id="btnResta">Resta</button>
-            <button id="btnMultiplicacion">Multiplicación</button>
-            <button id="btnDivision">División</button>
-        <div>
+ 
+</body>
+    <div class="cuerpo">
+        <h1>Calculadora de peso ideal</h1>
+        
+        <p>Calcula tu peso ideal en función de tu altura, peso, edad y sexo.</p>
+        <p>El resultado se compara con tu peso actual para darte una recomendación:</p>
+        
+        <ul>
+            <li>Si el resultado es menor que tu peso actual, debes ganar peso.</li>
+            <li>Si el resultado es mayor que tu peso actual, debes perder peso.</li>
+            <li>Si el resultado es igual a tu peso actual, estás en tu peso ideal.</li>
+        </ul>
+        
+        <p>Introduce tus datos para calcular tu peso ideal:</p>
+        
+        <form id="miFormulario">
+            <label for="altura">Altura:</label>
+            <input type="number" id="altura" name="altura" required>
+            
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso" name="peso" required>
+            
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+            
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+            </select>
+            
+            <button type="button" onclick="calcularPesoIdeal()">Calcular</button>
+            <small id="resultado">Resultado</small>
+        </form>
+        
     </div>
-    <style>
-        .calculadora {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: black;
-        }
-
-        .calculadora h1 {
-            text-align: center;
-            color: white;
-        }
-
-        .calculadora div {
-            margin-bottom: 10px;
-        }
-
-        .calculadora label {
-            display: block;
-            margin-bottom: 5px;
-            color: white;
-            text-align: center;
-        }
-
-        .calculadora input {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: white;
-        }
-
-        .botones {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .calculadora button {
-            display: inline;
-            width: 100px;
-            padding: 5px;
-            border: 1px solid ghostwhite;
-            border-radius: 5px;
-            background-color: white;
-            cursor: pointer;
-        }
-
-        .calculadora button:hover {
-            background-color: rosybrown;
-        }
-    </style>
-
     <script>
-        const num1 = document.getElementById('num1');
-        const num2 = document.getElementById('num2');
-        const resultado = document.getElementById('resultado');
-        const btnSuma = document.getElementById('btnSuma');
-        const btnResta = document.getElementById('btnResta');
-        const btnMultiplicacion = document.getElementById('btnMultiplicacion');
-        const btnDivision = document.getElementById('btnDivision');
-
-        btnSuma.onclick = () => {
-            resultado.value = parseInt(num1.value) + parseInt(num2.value);
+        function calcularPesoIdeal() {
+            var altura = parseFloat(document.getElementById("altura").value);
+            var peso = parseFloat(document.getElementById("peso").value);
+            var edad = parseFloat(document.getElementById("edad").value);
+            var sexo = document.getElementById("sexo").value;
+            
+            var resultado = "";
+            
+            if (sexo === "mujer") {
+                resultado = (altura - 100 + edad / 10) * 0.9;
+            } else {
+                resultado = altura - 100 + edad / 10;
+            }
+            
+            var recomendacion = "";
+            
+            if (resultado > peso) {
+                recomendacion = "Debes ganar peso.";
+                document.getElementById("resultado").classList.add("rojo");
+            } else if (resultado < peso) {
+                recomendacion = "Debes perder peso.";
+                document.getElementById("resultado").classList.add("amarillo");
+            } else if (resultado == peso) {
+                recomendacion = "Estás en tu peso ideal.";
+                document.getElementById("resultado").classList.add("verde");
+            }
+            
+            document.getElementById("resultado").textContent = recomendacion;
         }
-
-        btnResta.onclick = () => {
-            resultado.value = parseInt(num1.value) - parseInt(num2.value);
-        }
-
-        btnMultiplicacion.onclick = () => {
-            resultado.value = parseInt(num1.value) * parseInt(num2.value);
-        }
-
-        btnDivision.onclick = () => {
-            resultado.value = parseInt(num1.value) / parseInt(num2.value);
-        }
-
     </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .cuerpo {
+            width: 350px;
+            margin: 0 auto; 
+            border: solid 1px black;
+        }
+        h1 {
+            background-color: blue;
+            margin-top: 0%;
+            text-align: center;
+    
+            
+        }
+        ul {
+            color: purple;
+        }
 
+        form {
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        small {
+            margin-top: 10px;
+            text-align: center;
+        }
+      
+        .rojo {
+            color: red;
+        }
+        
+        .verde {
+            color: green;
+        }
+        
+        .amarillo {
+            color: yellow;
+        }
+
+    </style>
 </body>
 </html>
