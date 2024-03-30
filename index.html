@@ -5,40 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confidencialidad</title>
 </head>
+
 <body>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        <div>
+            <label for="num1">Número 1</label>
+            <input type="number" id="num1">
+        </div>
+        <div>
+            <label for="num2">Número 2</label>
+            <input type="number" id="num2">
+        </div>
+        <div>
+            <label for="resultado">Resultado</label>
+            <input type="number" id="resultado" disabled>
+        </div>
+        <div class="botones">
+            <button id="btnSuma">Suma</button>
+            <button id="btnResta">Resta</button>
+            <button id="btnMultiplicacion">Multiplicación</button>
+            <button id="btnDivision">División</button>
+        <div>
+    </div>
+    <style>
+        .calculadora {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: black;
+        }
+
+        .calculadora h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .calculadora div {
+            margin-bottom: 10px;
+        }
+
+        .calculadora label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+            text-align: center;
+        }
+
+        .calculadora input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .calculadora button {
+            display: inline;
+            width: 100px;
+            padding: 5px;
+            border: 1px solid ghostwhite;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .calculadora button:hover {
+            background-color: rosybrown;
+        }
+    </style>
 
     <script>
+        const num1 = document.getElementById('num1');
+        const num2 = document.getElementById('num2');
+        const resultado = document.getElementById('resultado');
+        const btnSuma = document.getElementById('btnSuma');
+        const btnResta = document.getElementById('btnResta');
+        const btnMultiplicacion = document.getElementById('btnMultiplicacion');
+        const btnDivision = document.getElementById('btnDivision');
 
-    var nota1 = prompt("Introduce la primera nota:");
-    var nota2 = prompt("Introduce la segunda nota:");
-    var nota3 = prompt("Introduce la tercera nota:");
-
-    nota1 = parseFloat(nota1);
-    nota2 = parseFloat(nota2);
-    nota3 = parseFloat(nota3);
-
-    if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
-        console.log("Error: Las notas deben ser números válidos.");
-    } else {
-        var media = (nota1 + nota2 + nota3) / 3;
-
-        document.write("La media de las notas es: " + media + "<br>");
-
-        var evaluacion;
-        if (media <= 3) {
-            evaluacion = "MD";
-        } else if (media <= 5) {
-            evaluacion = "Suspendido";
-        } else if (media <= 7) {
-            evaluacion = "Aprobado";
-        } else if (media <= 8) {
-            evaluacion = "Notable";
-        } else {
-            evaluacion = "Sobresaliente";
+        btnSuma.onclick = () => {
+            resultado.value = parseInt(num1.value) + parseInt(num2.value);
         }
-        document.write("La evaluación del alumno es: " + evaluacion);
-    }
- 
+
+        btnResta.onclick = () => {
+            resultado.value = parseInt(num1.value) - parseInt(num2.value);
+        }
+
+        btnMultiplicacion.onclick = () => {
+            resultado.value = parseInt(num1.value) * parseInt(num2.value);
+        }
+
+        btnDivision.onclick = () => {
+            resultado.value = parseInt(num1.value) / parseInt(num2.value);
+        }
+
     </script>
 
 </body>
